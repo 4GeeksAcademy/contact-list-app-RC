@@ -7,7 +7,7 @@ const NuevoContacto = () => {
     const navigate = useNavigate();
 
     const [contact, setContact] = useState({
-        full_name: "",
+        name: "",
         email: "",
         phone: "",
         address: ""
@@ -32,9 +32,9 @@ const NuevoContacto = () => {
                     <label className="form-label">Full Name</label>
                     <input
                         type="text"
-                        name="full_name"
+                        name="name"
                         className="form-control"
-                        value={contact.full_name}
+                        value={contact.name}
                         onChange={handleChange}
                         required
                     />

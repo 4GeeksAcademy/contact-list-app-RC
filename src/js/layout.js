@@ -5,7 +5,6 @@ import { Home } from "./views/home";
 import NuevoContacto from "./views/NuevoContacto";
 import EditarContacto from "./views/EditarContacto"
 import injectContext from "./store/appContext";
-import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
 
@@ -19,9 +18,7 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
-					
-					<Routes>
+						<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/nuevo-contacto" element={<NuevoContacto />} />
 						<Route path="/editar-contacto/:contactId" element={<EditarContacto />} />
@@ -31,7 +28,7 @@ const Layout = () => {
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
-	);
+	);  
 };
 
 export default injectContext(Layout);

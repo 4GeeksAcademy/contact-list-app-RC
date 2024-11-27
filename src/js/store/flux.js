@@ -5,20 +5,28 @@ const getState = ({ getStore, getActions, setStore }) => {
             contacts: [],
         },
         actions: {
+            createDefaultUser: async () => { 
+                await fetch('https://playground.4geeks.com/contact/agendas/frqmx/',
+                    {method: "POST", headers: {'Content-Type': 'application/json'}}
+                );
+                
+                
+                getActions().getContacts()
+            },
             getContacts: async () => {
                 const store = getStore()
                 try {
                     const response = await fetch('https://playground.4geeks.com/contact/agendas/frqmx/contacts');
                     if (!response.ok) throw new Error("Error fetching contacts");
                     const data = await response.json();
-                    setStore({...store, contacts: [...store.contacts, ...data.contacts]});
+                    setStore({...store, contacts: data.contacts});
                 } catch (error) {
                     console.error("Error fetching contacts:", error);
                 }
             },
             addContact: async (contact) => {
                 try {
-                    const response = await fetch('https://playground.4geeks.com/contact/', {
+                    const response = await fetch('https://playground.4geeks.com/contact/agendas/frqmx/contacts', {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ ...contact, agenda_slug: "frqmx" })
@@ -31,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },/**Hay un error */
             deleteContact: async (id) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/contact/${id}`, {
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/frqmx/contacts/${id}`, {
                         method: "DELETE"
                     });
                     if (!response.ok) throw new Error("Error deleting contact");
@@ -42,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             updateContact: async (id, updatedContact) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/contact/${id}`, {
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/frqmx/contacts/${id}`, {
                         method: "PUT",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(updatedContact)

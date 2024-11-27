@@ -8,7 +8,7 @@ const EditarContacto = () => {
     const { contactId } = useParams();
 
     const [contact, setContact] = useState({
-        full_name: "",
+        name: "",
         email: "",
         phone: "",
         address: ""
@@ -38,9 +38,9 @@ const EditarContacto = () => {
                     <label className="form-label">Full Name</label>
                     <input
                         type="text"
-                        name="full_name"
+                        name="name"
                         className="form-control"
-                        value={contact.full_name}
+                        value={contact.name}
                         onChange={handleChange}
                         required
                     />
